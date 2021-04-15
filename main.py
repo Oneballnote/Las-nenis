@@ -42,4 +42,5 @@ boton_salir = tkinter.Button(main_window, text = '  Salir  ', bg = '#89AAE6',bor
 tkinter.mainloop()
 
 
+
  

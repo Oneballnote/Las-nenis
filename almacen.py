@@ -6,6 +6,7 @@ def Almacen():
     #Personalización de la ventana
     main_window = tkinter.Tk()
     main_window.geometry('200x200')
+    main_window.configure(bg = '#6990D8')
     main_window.title('Almacen')
     
     #Textos
@@ -18,3 +19,4 @@ def Almacen():
     volver = tkinter.Button(main_window, text = 'volver',border = 0,command = main_window.destroy).grid(row = 3, column = 3)
     
     tkinter.mainloop()
+Almacen()

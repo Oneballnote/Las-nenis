@@ -10,10 +10,6 @@ import tkinter
 #Asígnamos el módulo datetime a dt para escribir menos xd 
 dt = datetime.now()
 
-
-
-
-
 #Crear ventana principal
 main_window = tkinter.Tk()
 main_window.geometry('600x500')

@@ -1,5 +1,6 @@
 import tkinter
 from datetime import datetime
+import pandas as pd
 dt = datetime.now()
 
 def Almacen():
@@ -14,7 +15,8 @@ def Almacen():
     nombre = tkinter.Label(main_window, text = 'Almacen',bg = '#6990D8').grid(row = 1, column = 2)
     producto = tkinter.Label(main_window, text = 'Producto',bg = '#6990D8').grid(row = 2,column = 1)
     Unidades = tkinter.Label(main_window, text = 'Unidades',bg = '#6990D8').grid(row = 2,column = 3)
-    
+    almacen = pd.read_csv("inventario.csv",index_col="Tipo")
+    print(almacen)
     #Botones
     volver = tkinter.Button(main_window, text = 'volver',border = 0,command = main_window.destroy).grid(row = 3, column = 3)
     

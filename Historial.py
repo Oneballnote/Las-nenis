@@ -17,4 +17,3 @@ def Ventana_Historial():
     salir = tkinter.Button(main_window,text = 'Volver', command = main_window.destroy)
     
     tkinter.mainloop()
-Ventana_Historial()

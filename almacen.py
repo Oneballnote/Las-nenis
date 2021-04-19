@@ -19,4 +19,3 @@ def Almacen():
     volver = tkinter.Button(main_window, text = 'volver',border = 0,command = main_window.destroy).grid(row = 3, column = 3)
     
     tkinter.mainloop()
-Almacen()

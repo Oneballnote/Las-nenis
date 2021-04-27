@@ -30,5 +30,3 @@ def ventana_ajustes():
 
     tkinter.mainloop()
     
-ventana_ajustes()
-    

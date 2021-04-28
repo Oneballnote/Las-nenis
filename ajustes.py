@@ -7,6 +7,9 @@ dt = datetime.now()
 def ventana_ajustes():
     main_window = tkinter.Tk()
     main_window.title("Ajustes")
+    main_window.geometry('600x500')
+    main_window.title('Ajustes')
+    
     def save(self):
         archivo = open('nombre.txt','w')
    
@@ -17,7 +20,7 @@ def ventana_ajustes():
     cambio_nombre = tkinter.Label(main_window, text = 'Introduzca el nombre de la empresa').grid(row = 1, column = 0)
     e = tkinter.Entry(main_window, width = 20)
     e.grid()
-    guardar = tkinter.Button(main_window, text = 'Guardar').grid()
+    guardar = tkinter.Button(main_window, text = 'Guardar', command = save).grid()
     boton_salir = tkinter.Button(main_window, text = 'Salir', command = main_window.destroy).grid()
     
    

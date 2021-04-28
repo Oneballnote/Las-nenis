@@ -5,6 +5,9 @@ dt = datetime.now()
 def Ventana_datos():
     
     main_window = tkinter.Tk()
+    main_window.geometry('600x500')
+    main_window.title('Datos')
+    
     Fecha = tkinter.Label(main_window, text = '{}/{}/{}'.format(dt.day, dt.month, dt.year), bg = '#6990D8').grid(row = 0, column = 3)
     datos = tkinter.Label(main_window, text = 'Datos').grid(row = 1, column = 2)
     promedio_ganancias = tkinter.Label(main_window, text = 'Promedio de ganancias').grid(row = 2, column = 1)

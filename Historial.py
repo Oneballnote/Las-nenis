@@ -43,7 +43,7 @@ print(type(histbolis.iloc[0,0]))
 histbolis.index = histbolis["Fecha"]
 histbolis.drop("Fecha", axis=1, inplace=True)
 
-busqueda = input("Ingrese día a buscar en formato dd/mm/aaaa: ")
+busqueda = input("Ingrese día a buscar en formato dd/mm/aa: ")
 try:
     histbolisbusquedadia = histbolis.loc[busqueda]    
 except:

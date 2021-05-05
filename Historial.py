@@ -14,6 +14,19 @@ def Ventana_Historial():
     Sabado = tkinter.Label(main_window, text = 'Sábado').grid(row = 8,column = 1)
     Domingo = tkinter.Label(main_window, text = 'Domingo').grid(row = 9,column = 1)
     
+    ########Para  abrir historial########
+histbolis = pd.read_csv("registro_bolis.csv")
+histbolis
+#Para solo ventas / carga
+soloventas = histbolis[histbolis["Acción"]=="Venta"]
+soloventas
+#convertir fecha en cadena a un datetime
+from datetime import datetime 
+fecha = input("Inserte fecha a buscar en formato dd/mm/aaaa")
+fecha_object = datetime.strptime(fecha, "%d/%m/%Y")
+"gay",fecha_object
+
+    
     salir = tkinter.Button(main_window,text = 'Volver', command = main_window.destroy)
     
     tkinter.mainloop()

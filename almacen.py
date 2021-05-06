@@ -30,12 +30,22 @@ def Almacen():
     
     
     
-    
-    
     #almacen = pd.read_csv("inventario.csv",index_col="Tipo")
     #print(almacen)
     
+    nombre = tkinter.Label(main_window, text = 'Almacen',bg = '#6990D8').grid(row = 1, column = 2)
+    producto = tkinter.Label(main_window, text = 'Producto',bg = '#6990D8').grid(row = 2,column = 1)
+    Unidades = tkinter.Label(main_window, text = 'Unidades',bg = '#6990D8').grid(row = 2,column = 3)
     
+    almacen = pd.read_csv("inventario.csv",index_col="Tipo")
+    print(almacen)
+    #PAra click en botón bolis
+    almacenbolis = almacen[almacen["Tipo"]=="Bolis"]
+    print(almacenbolis)
+    #PAra click en botón botanas
+    almacenbotanas = almacen[almacen["Tipo"]=="Botanas"]
+    print(almacenbotanas)
+
     #Botones
     volver = tkinter.Button(main_window, 
                             text = 'volver',

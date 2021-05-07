@@ -128,7 +128,7 @@ def ventana_balance():
                                cursor = Figura,
                                relief = Tipo_borde,
                                font = (Fuente_botones, Tamaño_fuente_botones)).grid(row = 7, column = 5, pady = 10)
-    #
+    
     Boton_salir = tkinter.Button(VentanadeBalance,
                                 text = 'Guardar y salir',
                                 border = Tamaño_bordes,

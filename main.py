@@ -3,7 +3,7 @@ from datetime import datetime
 from almacen import *
 from balance import *
 from Datos import *
-from ajustes import *
+from ajustes import ventana_ajustes
 from Hoja_de_personalizacion import *
 from tkinter import *
 import io
@@ -39,7 +39,7 @@ boton_almacen = Button(main_window,
                                cursor = Figura,
                                relief = Tipo_borde,
                                font = (Fuente_botones, Tamaño_fuente_botones)).grid(pady = Espacio_botones)
-boton_balance = Button(main_window, text = ' Balance ',
+boton_balance = Button(main_window, text = ' Registro ',
                                border = Tamaño_bordes,
                                bg = Color_de_botones, 
                                command = ventana_balance,

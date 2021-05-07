@@ -1,11 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Wed May  5 18:40:41 2021
-
-@author: Hannia
-"""
-
-
 from datetime import datetime
 import pandas as pd
 
@@ -14,8 +6,8 @@ import pandas as pd
 fechadia = datetime.now()
 fecharegistro =fechadia.date()
 
-preciobolis=14
-preciobotanas=30
+preciobolis = 14
+preciobotanas = 30
 
 #Ingreso de la venta por parte del usuario
 tipoproducto =  input("Tipo de producto vendido (botanas/bolis): ").lower()

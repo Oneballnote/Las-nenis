@@ -25,5 +25,41 @@ def Ventana_datos():
     Ganancia_mensual = tkinter.Label(main_window, text = 'Ganancia mensual').grid(row = 3, column = 1)
     Ganancia_neta = tkinter.Label(main_window, text = 'Ganancia neta').grid(row = 4, column = 1)
     graficas = tkinter.Button(main_window, text = 'Gráficas').grid(row = 5, column = 1)
+    '''
+    ########Para  abrir historial########
+    #Si click en botón bolis entonces:
+    histbolis = pd.read_csv("registro_bolis.csv")
+    print(histbolis)
+    #Si botón en solo ventas entonces:
+    soloventasbolis = histbolis[histbolis["Acción"]=="Venta"]
+    print(soloventasbolis)
+    #Sinosi botón en solo carga entonces:
+    solocargabolis = histbolis[histbolis["Acción]=="Carga"]
+    print(solocargabolis)
+                          
+    #si click en botón botanas entonces:
+    histbotanas = pd.read_csv("registro_botanas.csv")
+    print(histbotanas)
+    #Si botón en solo venta entonces:
+    soloventabotanas = histbotanas[histbotanas["Acción"]=="Venta"]
+    print(soloventabotanas)
+    #Sinosi botón en solo carga entonces:
+    solocargabotanas = histbotanas[histbotanas["Acción"]=='Carga']
+    print(solocargabotanas)
+                                            
+        #Para buscar un día en específico 
+        #Para buscar un día en específico 
+    histbolis = pd.read_csv("registro_bolis.csv")
+    print(type(histbolis.iloc[0,0]))
+    histbolis.index = histbolis["Fecha"]
+    histbolis.drop("Fecha", axis=1, inplace=True)
     
+    busqueda = input("Ingrese día a buscar en formato dd/mm/aa: ")
+    try:
+        histbolisbusquedadia = histbolis.loc[busqueda]    
+    except:
+        print("No hay registro del día ingresado")
+    
+    histbolis.reset_index(inplace=True)
+    '''
     tkinter.mainloop()

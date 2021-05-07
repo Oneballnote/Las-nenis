@@ -2,6 +2,7 @@ import tkinter
 import tkinter.font
 from Hoja_de_personalizacion import *
 from datetime import datetime
+import pandas as pd
 
 dt = datetime.now()
 
@@ -92,49 +93,72 @@ def ventana_balance():
         costobolis=-9
         costobotanas=-19
 
-    #Ingreso de la venta por parte del usuario
+        #Ingreso de la venta por parte del usuario
         tipoproducto =  input("Tipo de producto cargado (botanas/bolis): ").lower()
         sabor = input("Sabor del producto cargado: ").lower()
         cantidad = int(input("Cantidad de unidades cargadas: "))
 
 
-    #lectura de df's de historial e inventario
+        #lectura de df's de historial e inventario
         if tipoproducto=="bolis":
             ralmacen = pd.read_csv("Inventario.csv")
             print(ralmacen)
             rregistrobolis = pd.read_csv("registro_bolis.csv")
             print(rregistrobolis)
             filas = len(rregistrobolis.index)
-    #agregar registro al historial
-            rregistrobolis.loc[filas] = [fecharegistro.strftime("%x"),"Carga",cantidad,cantidad*costobolis]
+        #agregar registro al historial
+            #nuevoregistro = [fecharegistro.strftime("%x"),"Venta",cantidad,cantidad*preciobolis]
+            rregistrobolis.loc[filas] = [fecharegistro.strftime("%d/%m/%Y"),"Carga",cantidad,cantidad*costobolis]
             print(rregistrobolis)
-    #modificar los bolis vendidos en el inventario
-            renglon = ralmacen[ralmacen["Sabor"]==sabor.capitalize()]
-            renglon["Cantidad"] = renglon["Cantidad"] + cantidad
-            ralmacen[ralmacen["Sabor"]==sabor.capitalize()] = renglon
-            print(ralmacen)
-    #guardar/sobreescribir los dataframes modificados en los archivos  csv
+        #modificar los bolis vendidos en el inventario
+            filas2 = len(ralmacen.index)
+        #buscamos fila por fila si el sabor que compramos ya estába en el inventario
+            for i in range(filas2):
+                if ralmacen.at[i,"Sabor"]==sabor.capitalize():        
+        #Si el sabor ya estaba entonces al renglón de ese sabor le modificamos la cantidad
+                    renglon = ralmacen[ralmacen["Sabor"]==sabor.capitalize()]
+                    renglon["Cantidad"] = renglon["Cantidad"] + cantidad
+                    ralmacen[ralmacen["Sabor"]==sabor.capitalize()] = renglon
+                    print(ralmacen)
+        #Si en ningún renglón encontramos el sabor entonces...
+                else:
+                    renglon=0
+        #Si no se encontró el sabor en el inventario significa que cargamos uno nuevo, por lo que agregamos un nuevo campo
+            if renglon==0:
+                ralmacen.loc[filas2] = [tipoproducto.capitalize(),sabor.capitalize(),cantidad]        
+        #guardar/sobreescribir los dataframes modificados en los archivos  csv
+            ralmacen.index = ralmacen["Tipo"]
             ralmacen.to_csv("Inventario.csv")
+            rregistrobolis.index = rregistrobolis["Tipo"]
             rregistrobolis.to_csv("registro_bolis.csv")
-    
+
         elif tipoproducto=="botanas":
             ralmacen = pd.read_csv("Inventario.csv")
             print(ralmacen)
             rregistrobotanas = pd.read_csv("registro_botanas.csv")
             print(rregistrobotanas)
             filas = len(rregistrobotanas.index)
-    #agregar registro al historial
-            rregistrobotanas.loc[filas] = [fecharegistro.strftime("%x"),"Carga",cantidad,cantidad*costobotanas]
+        #agregar registro al historial
+            rregistrobotanas.loc[filas] = [fecharegistro.strftime("%d/m/%Y"),"Carga",cantidad,cantidad*costobotanas]
             print(rregistrobotanas)
-    #modificar las botanas vendidas en el inventario
-            renglon = ralmacen[ralmacen["Sabor"]==sabor.capitalize()]
-            renglon["Cantidad"] = renglon["Cantidad"] + cantidad
-            ralmacen[ralmacen["Sabor"]==sabor.capitalize()] = renglon
-            print(ralmacen)
-    #guardar/sobreescribir los dataframes modificados en los archivos  csv
+        #modificar las botanas vendidas en el inventario
+            filas2 = len(ralmacen.index)
+            for i in range(filas2):
+                if ralmacen.at[i,"Sabor"]==sabor.capitalize():
+                    renglon = ralmacen[ralmacen["Sabor"]==sabor.capitalize()]
+                    renglon["Cantidad"] = renglon["Cantidad"] + cantidad
+                    ralmacen[ralmacen["Sabor"]==sabor.capitalize()] = renglon
+                    print(ralmacen)
+                else:
+                    renglon=0
+            if renglon==0:
+                ralmacen.loc[filas2] = [tipoproducto.capitalize(),sabor.capitalize(),cantidad]
+        #guardar/sobreescribir los dataframes modificados en los archivos  csv
+            ralmacen.index = ralmacen["Tipo"]
             ralmacen.to_csv("Inventario.csv")
+            rregistrobotanas.index = rregistrobotanas["Fecha"]
             rregistrobotanas.to_csv("registro_botanas.csv")
-        
+
     #Título
     balance = tkinter.Label(VentanadeBalance, 
                             text = 'Registros', 

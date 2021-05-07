@@ -26,4 +26,77 @@ def Ventana_datos():
     Ganancia_neta = tkinter.Label(main_window, text = 'Ganancia neta').grid(row = 4, column = 1)
     graficas = tkinter.Button(main_window, text = 'Gráficas').grid(row = 5, column = 1)
     
+    import datetime
+    import pandas as pd
+    
+        
+    ######MUESTRA Y BÚSQUEDA EN EL HISTORIAL#######
+    #Si click en botón bolis entonces:
+    histbolis = pd.read_csv("registro_bolis.csv")   
+    #histbolis = pd.read_csv("registro_bolis.csv", index_col="Fecha")
+    print(histbolis)
+    #Si botón en solo ventas entonces:
+    soloventasbolis = histbolis[histbolis["Acción"]=="Venta"]
+    print(soloventasbolis)
+    #Sinosi botón en solo carga entonces:
+    solocargabolis = histbolis[histbolis["Acción"]=="Carga"]
+    print(solocargabolis)
+                          
+    #si click en botón botanas entonces:
+   histbotanas = pd.read_csv("registro_botanas.csv")
+    #histbotanas = pd.read_csv("registro_botanas.csv", index_col="Fecha")
+    print(histbotanas)
+    #Si botón en solo venta entonces:
+    soloventabotanas = histbotanas[histbotanas["Acción"]=="Venta"]
+    print(soloventabotanas)
+    #Sinosi botón en solo carga entonces:
+    solocargabotanas = histbotanas[histbotanas["Acción"]=='Carga']
+    print(solocargabotanas)
+
+    #Para buscar un día en específico  
+    histbolis.index = histbolis["Fecha"]
+    histbolis.drop("Fecha", axis=1, inplace=True)
+
+    busqueda = input("Ingrese día a buscar en formato dd/mm/aa: ")
+    try:
+        histbolisbusquedadia = histbolis.loc[busqueda]    
+    except:
+        print("No hay registro del día ingresado")
+    histbolis.reset_index(inplace=True)
+
+    ######GANANCIAS BRUTAS######
+    gananciabrutabolis = sum(soloventasbolis["Ganancia"])
+    totalbolisvendidos = sum(soloventasbolis["Cantidad"])
+    gananciabrutabotanas = sum(soloventabotanas["Ganancia"])
+    totalbotanasvendidas = sum(soloventabotanas["Cantidad"])
+
+    ######GANANCIAS NETAS#######
+    ganancianetabolis = sum(histbolis["Ganancia"])
+    ganancianetabotanas = sum(histbotanas["Ganancia"])
+
+    """
+    ######PROMEDIO GANANCIA MENSUAL######
+    *****PROBLEMA, AL CONVERTIR A DATETIME LAS FECHAS PARA ASÍ PODER AGRUPARLAS
+    SE CAMBIAN ALGUNOS REGISTROS: LOS DÍAS PASAN A SER MESES, LOS MESES DIAS.
+    POR LO QUE APARECEN REGISTROS DE OCTUBRE 3, POR EJEMPLO
+    ********
+    #convertir a datetime las fechas
+    soloventasbolis.loc[:,"Fecha"]= pd.to_datetime(soloventasbolis["Fecha"])
+    print(soloventasbolis)
+    #soloventasbolismeses = soloventasbolis.resample('M').agg({"Cantidad":"sum","Ganancia":"sum"}) 
+    """
+    #%%
+    #####GRAFICACIÓN######
+    import matplotlib.pyplot as plt
+    #Comparación de ganancias brutas
+    plt.pie([gananciabrutabolis,gananciabrutabotanas], 
+                                labels=["Ganancia Bolis","Ganancia Botanas"], 
+                                autopct="%1.1f%%", shadow=True, startangle=90)
+    plt.show()
+    #comparación de ganancias netas
+    plt.pie([ganancianetabolis,ganancianetabotanas], 
+                                labels=["Ganancia Bolis","Ganancia Botanas"], 
+                                autopct="%1.1f%%", shadow=True, startangle=90)
+    plt.show()
+    
     tkinter.mainloop()

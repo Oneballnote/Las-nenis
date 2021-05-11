@@ -36,10 +36,10 @@ def Ventana_datos():
     #histbolis = pd.read_csv("registro_bolis.csv", index_col="Fecha")
     print(histbolis)
     #Si botón en solo ventas entonces:
-    soloventasbolis = histbolis[histbolis["Acción"]=="Venta"]
+    soloventasbolis = histbolis[histbolis["Accion"]=="Venta"]
     print(soloventasbolis)
     #Sinosi botón en solo carga entonces:
-    solocargabolis = histbolis[histbolis["Acción"]=="Carga"]
+    solocargabolis = histbolis[histbolis["Accion"]=="Carga"]
     print(solocargabolis)
                           
     #si click en botón botanas entonces:
@@ -47,17 +47,17 @@ def Ventana_datos():
     #histbotanas = pd.read_csv("registro_botanas.csv", index_col="Fecha")
     print(histbotanas)
     #Si botón en solo venta entonces:
-    soloventabotanas = histbotanas[histbotanas["Acción"]=="Venta"]
+    soloventabotanas = histbotanas[histbotanas["Accion"]=="Venta"]
     print(soloventabotanas)
     #Sinosi botón en solo carga entonces:
-    solocargabotanas = histbotanas[histbotanas["Acción"]=='Carga']
+    solocargabotanas = histbotanas[histbotanas["Accion"]=='Carga']
     print(solocargabotanas)
 
     #Para buscar un día en específico  
     histbolis.index = histbolis["Fecha"]
     histbolis.drop("Fecha", axis=1, inplace=True)
 
-    busqueda = input("Ingrese día a buscar en formato dd/mm/aa: ")
+    busqueda = input("Ingrese día a buscar en formato dd/mm/aaaa: ")
     try:
         histbolisbusquedadia = histbolis.loc[busqueda]    
     except:

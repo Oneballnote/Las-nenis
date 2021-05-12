@@ -49,7 +49,7 @@ def ventana_balance():
             print(rregistrobolis)
             filas = len(rregistrobolis.index)
     #agregar registro al historial
-            rregistrobolis.loc[filas] = [fecharegistro.strftime("%x"),"Venta",cantidad,cantidad*preciobolis]
+            rregistrobolis.loc[filas] = [fecharegistro.strftime("%d/%m/%Y"),"Venta",cantidad,cantidad*preciobolis]
             print(rregistrobolis)
     #modificar los bolis vendidos en el inventario
             renglon = ralmacen[ralmacen["Sabor"]==sabor.capitalize()]
@@ -57,7 +57,11 @@ def ventana_balance():
             ralmacen[ralmacen["Sabor"]==sabor.capitalize()] = renglon
             print(ralmacen)
     #guardar/sobreescribir los dataframes modificados en los archivos  csv
+            ralmacen.index = ralmacen["Tipo"]
+            ralmacen.drop("Tipo", axis=1, inplace=True)
             ralmacen.to_csv("Inventario.csv")
+            rregistrobolis.index = rregistrobolis["Fecha"]
+            rregistrobolis.drop("Fecha", axis=1, inplace=True)
             rregistrobolis.to_csv("registro_bolis.csv")
     
         elif tipoproducto=="botanas":
@@ -67,7 +71,7 @@ def ventana_balance():
             print(rregistrobotanas)
             filas = len(rregistrobotanas.index)
     #agregar registro al historial
-            rregistrobotanas.loc[filas] = [fecharegistro.strftime("%x"),"Venta",cantidad,cantidad*preciobotanas]
+            rregistrobotanas.loc[filas] = [fecharegistro.strftime("%d/%m/%Y"),"Venta",cantidad,cantidad*preciobotanas]
             print(rregistrobotanas)
     #modificar las botanas vendidas en el inventario
             renglon = ralmacen[ralmacen["Sabor"]==sabor.capitalize()]
@@ -75,7 +79,11 @@ def ventana_balance():
             ralmacen[ralmacen["Sabor"]==sabor.capitalize()] = renglon
             print(ralmacen)
     #guardar/sobreescribir los dataframes modificados en los archivos  csv
+            ralmacen.index = ralmacen["Tipo"]
+            ralmacen.drop("Tipo", axis=1, inplace=True)
             ralmacen.to_csv("Inventario.csv")
+            rregistrobotanas.index = rregistrobotanas["Fecha"]
+            rregistrobotanas.drop("Fecha", axis=1, inplace=True)
             rregistrobotanas.to_csv("registro_botanas.csv")
         
     def Registro_de_Compras():
@@ -128,8 +136,10 @@ def ventana_balance():
                 ralmacen.loc[filas2] = [tipoproducto.capitalize(),sabor.capitalize(),cantidad]        
         #guardar/sobreescribir los dataframes modificados en los archivos  csv
             ralmacen.index = ralmacen["Tipo"]
+            ralmacen.drop("Tipo", axis=1, inplace=True)
             ralmacen.to_csv("Inventario.csv")
-            rregistrobolis.index = rregistrobolis["Tipo"]
+            rregistrobolis.index = rregistrobolis["Fecha"]
+            rregistrobolis.drop("Fecha", axis=1, inplace=True)
             rregistrobolis.to_csv("registro_bolis.csv")
 
         elif tipoproducto=="botanas":
@@ -139,7 +149,7 @@ def ventana_balance():
             print(rregistrobotanas)
             filas = len(rregistrobotanas.index)
         #agregar registro al historial
-            rregistrobotanas.loc[filas] = [fecharegistro.strftime("%d/m/%Y"),"Carga",cantidad,cantidad*costobotanas]
+            rregistrobotanas.loc[filas] = [fecharegistro.strftime("%d/%m/%Y"),"Carga",cantidad,cantidad*costobotanas]
             print(rregistrobotanas)
         #modificar las botanas vendidas en el inventario
             filas2 = len(ralmacen.index)
@@ -155,8 +165,10 @@ def ventana_balance():
                 ralmacen.loc[filas2] = [tipoproducto.capitalize(),sabor.capitalize(),cantidad]
         #guardar/sobreescribir los dataframes modificados en los archivos  csv
             ralmacen.index = ralmacen["Tipo"]
+            ralmacen.drop("Tipo", axis=1, inplace=True)
             ralmacen.to_csv("Inventario.csv")
             rregistrobotanas.index = rregistrobotanas["Fecha"]
+            rregistrobotanas.drop("Fecha", axis=1, inplace=True)
             rregistrobotanas.to_csv("registro_botanas.csv")
 
     #Título

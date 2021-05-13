@@ -86,6 +86,7 @@ def ventana_balance():
             rregistrobolis.index = rregistrobolis['Fecha']
             rregistrobolis.drop('Fecha', axis = 1, inplace = True)
             rregistrobolis.to_csv("lolo.csv")
+
     
         elif a == "botanas":
             ralmacen = pd.read_csv("Inventario.csv")
@@ -93,11 +94,13 @@ def ventana_balance():
             filas = len(rregistrobotanas.index)
     #agregar registro al historial
             rregistrobotanas.loc[filas] = [fecharegistro.strftime("%d/%m/%Y"),"Venta",cantidad,cantidad*preciobotanas]
+            
     #modificar las botanas vendidas en el inventario
             renglon = ralmacen[ralmacen["Sabor"]==sabor.capitalize()]
             renglon["Cantidad"] = renglon["Cantidad"] - cantidad
             ralmacen[ralmacen["Sabor"]==sabor.capitalize()] = renglon
     #guardar/sobreescribir los dataframes modificados en los archivos  csv
+
             ralmacen.index = ralmacen['Tipo']
             ralmacen.drop('Tipo', axis = 1, inplace = True)
             ralmacen.to_csv("Inventario.csv")
@@ -105,6 +108,7 @@ def ventana_balance():
             rregistrobotanas.drop('Fecha', axis = 1, inplace = True)
             rregistrobotanas.to_csv("registro botanas.csv")
        
+
     def Registro_de_Compras():
         a = entrada_articulo_compra.get().lower()
         sabor = entrada_tipo_compra.get().lower()
@@ -143,6 +147,7 @@ def ventana_balance():
                 ralmacen.loc[filas2] = [a.capitalize(),sabor.capitalize(),cantidad]        
         #guardar/sobreescribir los dataframes modificados en los archivos  csv
             ralmacen.index = ralmacen["Tipo"]
+
             ralmacen.drop('Tipo', axis = 1, inplace = True)
             ralmacen.to_csv("Inventario.csv")
             rregistrobolis.index = rregistrobolis["Fecha"]
@@ -154,7 +159,9 @@ def ventana_balance():
             rregistrobotanas = pd.read_csv("registro botanas.csv")
             filas = len(rregistrobotanas.index)
         #agregar registro al historial
-            rregistrobotanas.loc[filas] = [fecharegistro.strftime("%x"),"Carga",cantidad,cantidad*costobotanas]
+
+            rregistrobotanas.loc[filas] = [fecharegistro.strftime("%d/%m/%Y"),"Carga",cantidad,cantidad*costobotanas]
+
         #modificar las botanas vendidas en el inventario
             filas2 = len(ralmacen.index)
             for i in range(filas2):
@@ -178,6 +185,7 @@ def ventana_balance():
             rregistrobotanas.index = rregistrobotanas["Fecha"]
             ralmacen.drop("Fecha", axis = 1, inplace = True)
             rregistrobotanas.to_csv("registro botanas.csv")
+
     #Título
     balance = tkinter.Label(VentanadeBalance, 
                             text = 'Registros', #Este el texto que se va a imprimir 

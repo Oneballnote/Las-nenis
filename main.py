@@ -12,21 +12,25 @@ import io
 nombre_empresa = open('nombre.txt', 'r')
 empresa = nombre_empresa.readline()
 nombre_empresa.close()
+
 #Asígnamos el módulo datetime a dt para escribir menos xd 
 dt = datetime.now()
+
 #Crear ventana principal
-main_window = Tk()
-main_window.geometry('900x750')
-main_window.configure(bg = Color_de_fondo)
-main_window.title('Inicio')
+main_window = Tk() #Inicia una ventana llamada main_window
+main_window.geometry('900x750') #Especifica el tamaño de la ventana
+main_window.configure(bg = Color_de_fondo) #Indica el color de fondo de la ventana
+main_window.title('Inicio') #Aquí se pone el título de la ventana, el que aparece en la barra superior
+
 #Sección de textos sin interacción
 Fecha = Label(main_window, 
-                      text = '{}/{}/{}'.format(dt.day, dt.month, dt.year), 
-                      bg = Color_de_fondo,
-                      font = (Fuente_titulos, 10)).grid(column = 2)
+                text = '{}/{}/{}'.format(dt.day, dt.month, dt.year), 
+                bg = Color_de_fondo,
+                font = (Fuente_titulos, 10)).grid(column = 2) #Es la fecha, con todo y características del texto y posicionamiento
 label2 = Label(main_window, text = empresa,
                        bg = Color_de_fondo, 
-                       font = (Fuente_titulos, Tamaño_titulos)).grid(padx = espacio_lateral, pady = espacio_superior)
+                       font = (Fuente_titulos, Tamaño_titulos)).grid(padx = espacio_lateral, pady = espacio_superior) #Es el título principal que aparece dentro de la ventana, con todo y características del texto y posicionamiento
+
 #Sección de botones
 boton_almacen = Button(main_window, 
                                text = ' Almacén ',
@@ -37,8 +41,7 @@ boton_almacen = Button(main_window,
                                width = Ancho_botones,   
                                activebackground = botones_activos,
                                cursor = Figura,
-                               relief = Tipo_borde,
-                               font = (Fuente_botones, Tamaño_fuente_botones)).grid(pady = Espacio_botones)
+                               font = (Fuente_botones, Tamaño_fuente_botones)).grid(pady = Espacio_botones) #Esta sección crea un botón que da acceso a la ventana almacén
 boton_balance = Button(main_window, text = ' Registro ',
                                border = Tamaño_bordes,
                                bg = Color_de_botones, 
@@ -47,8 +50,7 @@ boton_balance = Button(main_window, text = ' Registro ',
                                width = Ancho_botones,
                                activebackground = botones_activos,
                                cursor = Figura,
-                               relief = Tipo_borde,
-                               font = (Fuente_botones, Tamaño_fuente_botones)).grid(pady = Espacio_botones)
+                               font = (Fuente_botones, Tamaño_fuente_botones)).grid(pady = Espacio_botones)#Esta sección crea un botón que da acceso a la ventana Registro
 boton_datos = Button(main_window, text = '  Datos  ',
                              border = Tamaño_bordes,
                              bg = Color_de_botones, 
@@ -57,8 +59,7 @@ boton_datos = Button(main_window, text = '  Datos  ',
                              width = Ancho_botones,
                              activebackground = botones_activos,
                              cursor = Figura,
-                             relief = Tipo_borde,
-                             font = (Fuente_botones, Tamaño_fuente_botones)).grid(pady = Espacio_botones)
+                             font = (Fuente_botones, Tamaño_fuente_botones)).grid(pady = Espacio_botones) #Esta sección crea un botón que da acceso a la ventana Datos
 boton_ajustes = Button(main_window, text = ' Ajustes ',
                                bg = Color_de_botones,
                                border = Tamaño_bordes, 
@@ -67,18 +68,16 @@ boton_ajustes = Button(main_window, text = ' Ajustes ',
                                width = Ancho_botones,
                                activebackground = botones_activos,
                                cursor = Figura,
-                               relief = Tipo_borde,
-                               font = (Fuente_botones, Tamaño_fuente_botones)).grid(pady = Espacio_botones)
+                               font = (Fuente_botones, Tamaño_fuente_botones)).grid(pady = Espacio_botones) #Esta sección crea un botón que da acceso a la ventana ajustes
 boton_salir = Button(main_window, text = '  Salir  ', 
                              bg = Color_de_botones,
                              border = Tamaño_bordes,
-                             command = main_window.destroy, 
+                             command = main_window.quit, 
                              heigh = Altura_botones, 
                              width = Ancho_botones,
                              activebackground = botones_activos,
                              cursor = Figura,
-                             relief = Tipo_borde,
-                             font = (Fuente_botones, Tamaño_fuente_botones)).grid(pady = Espacio_botones)
+                             font = (Fuente_botones, Tamaño_fuente_botones)).grid(pady = Espacio_botones) #Esta sección cierra el programa y todas las ventanas que tenga abiertas
 
 #Lo hacemos un bucle infinito para que no se cierre
 main_window.mainloop()

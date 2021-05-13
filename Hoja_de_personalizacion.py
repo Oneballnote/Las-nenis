@@ -10,7 +10,6 @@ Espacio_botones = 10
 
 #Características de bordes
 Tamaño_bordes = 1
-Tipo_borde = "ridge"
 
 
 #Características de Botones

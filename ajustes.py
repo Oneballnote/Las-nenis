@@ -11,7 +11,6 @@ def ventana_ajustes():
             
     def save():
         archivo = open('nombre.txt','w')
-    
         archivo.write(Nombre_empresa.get())
         archivo.close()
         
@@ -22,8 +21,7 @@ def ventana_ajustes():
     
     def Guardar_datos():
         Archivo = open('productos.txt', 'w')
-        for i in Nombre_producto:
-            print(i)
+        for i in Nombre_producto: 
             Archivo.write(i + ',')
         Archivo.close()
         costo = open('costo.txt', 'w')
@@ -67,8 +65,9 @@ def ventana_ajustes():
                            width = ancho_botones,   
                            activebackground = botones_activos,
                            cursor = Figura,
-                           relief = Tipo_borde,
                            font = (Fuente_botones, Tamaño_fuente_botones)).grid(pady = Espacio_botones - 5)
+   
+   
     Separacion = tkinter.Label(VentanaDeAjustes, 
                                text = '-'*71,
                                bg = Color_de_fondo).grid(pady = Espacio_botones - 5)
@@ -83,7 +82,6 @@ def ventana_ajustes():
                                bg = Color_de_fondo,
                                font = (Fuente_subtitulos, Tamaño_subtitulos)).grid(pady = Espacio_botones - 5)
     Entrada_producto = tkinter.Entry(VentanaDeAjustes, width = 30)
-    Entrada_producto.insert(0,"")
     Entrada_producto.grid(pady = Espacio_botones - 5)
     Titulo_precios_entry = tkinter.Label(VentanaDeAjustes,
                                text = 'Precio',
@@ -108,7 +106,6 @@ def ventana_ajustes():
                                   width = ancho_botones,   
                                   activebackground = botones_activos,
                                   cursor = Figura,
-                                  relief = Tipo_borde,
                                   font = (Fuente_botones, Tamaño_fuente_botones)).grid(pady = Espacio_botones)
     boton_salir = tkinter.Button(VentanaDeAjustes, 
                                  text = 'Guardar\ny\nsalir', 
@@ -119,7 +116,6 @@ def ventana_ajustes():
                                  width = ancho_botones,   
                                  activebackground = botones_activos,
                                  cursor = Figura,
-                                 relief = Tipo_borde,
                                  font = (Fuente_botones, Tamaño_fuente_botones)).grid(pady = Espacio_botones - 5)
     
-    tkinter.mainloop()
+    tkinter.mainloop() #Crea un bucle para que no se cierre la ventana

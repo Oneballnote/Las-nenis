@@ -1,0 +1,28 @@
+Los archivos .py que de momento son utilizables son:
+
+main.py: Que se encarga de abrir la ventana principal la cual da acceso a las otras ventanas.
+
+almacen.py: Esta se encarga de abrir una nueva ventana que muestre el resumen del inventario que 
+se debería tener en ese momento.
+
+balance.py: muestra un formato de entradas para registrar las ventas y compras que se hayan hecho.
+
+Datos.py: Aunque ya se puede abrir sin generar un error, aún no muestra la información deseada puesto que faltan las gráficas.
+
+ajustes.py: contiene dos apartados, uno para cambiar el nombre que aparecerá en la ventana principal, y otro para modificar los precios y costos almacenados en el sistema para hacer la contabilidad del negocio.
+
+Hoja_de_personalizacion.py: Aquí hay varias medidas estándar almacenadas en variables, por si en un futuro se desea cambiar algún tamaño o característica se cambie unicamente en una variable y no en todos lo lugares donde se utiliza. Al ejecutarse no muestra nada en pantalla, solo se importa a todos los otros archivos para su apoyo.
+
+Archivos .txt y .csv
+
+Inventario.cvs: Aquí se almacenan la mercancia disponible, clasificada por tipo, sabor y cantidad
+
+nombre.txt: aquí se guarda el nombre ingresado en ajustes.
+
+producto.txt: aqui se guarda el nombre de cada producto, para poder asociarlo posteriormente con su precio y costo.
+
+precio.txt:  aqui se guarda el precio de cada producto, para poder asociarlo posteriormente con su nombre y costo.
+
+costo.txt:  aqui se guarda el costo de cada producto, para poder asociarlo posteriormente con su nombre y precio.
+
+Hasta el momento estos son los archivos que se utilizan y sus funciones en el programa, un poco resumidas eso sí. 

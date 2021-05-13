@@ -1,4 +1,4 @@
-Fecha,Accion,Cantidad,Ganancia
+fecha,Accion,Cantidad,Ganancia
 04/02/2021,Venta,8,240
 05/02/2021,Venta,4,120
 09/02/2021,Venta,3,90
@@ -9,5 +9,6 @@ Fecha,Accion,Cantidad,Ganancia
 05/03/2021,Venta,2,60
 10/03/2021,Venta,3,90
 11/03/2021,Venta,2,60
-01/02/2021,Carga,33,-693
+01/02/2021,Carga,3,-69
 17/02/2021,Carga,9,-189
+11/05/2021,Venta,5,150

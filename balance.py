@@ -93,7 +93,7 @@ def ventana_balance():
             rregistrobotanas = pd.read_csv("registro botanas.csv")
             filas = len(rregistrobotanas.index)
     #agregar registro al historial
-            rregistrobotanas.loc[filas] = [fecharegistro.strftime("%d/%m/%Y"),"Venta",cantidad,cantidad*preciobotanas]
+            rregistrobotanas.loc[filas] = [fecharegistro.strftime("%d/%m/%Y"),"Venta",cantidad,cantidad*preciobotana]
             
     #modificar las botanas vendidas en el inventario
             renglon = ralmacen[ralmacen["Sabor"]==sabor.capitalize()]
@@ -160,7 +160,7 @@ def ventana_balance():
             filas = len(rregistrobotanas.index)
         #agregar registro al historial
 
-            rregistrobotanas.loc[filas] = [fecharegistro.strftime("%d/%m/%Y"),"Carga",cantidad,cantidad*costobotanas]
+            rregistrobotanas.loc[filas] = [fecharegistro.strftime("%d/%m/%Y"),"Carga",cantidad,cantidad*costobotana]
 
         #modificar las botanas vendidas en el inventario
             filas2 = len(ralmacen.index)

@@ -1,4 +1,3 @@
-import tkinter
 from datetime import datetime
 from Hoja_de_personalizacion import *
 import pandas as pd
@@ -12,49 +11,62 @@ def Ventana_datos():
             #####GRAFICACIÓN######
         #Comparación de ganancias brutas
         plt.pie([gananciabrutabolis,gananciabrutabotanas], 
-                                    labels=["Ganancia bruta Bolis","Ganancia Botanas"], 
+                                    labels=["Ganancia bruta Bolis","Ganancia bruta Botanas"], 
                                     autopct="%1.1f%%", shadow=True, startangle=90)
         plt.show()
     def Mostrar_graficas2():
         #comparación de ganancias netas
         plt.pie([ganancianetabolis,ganancianetabotanas], 
-                                    labels=["Ganancia Neta Bolis","Ganancia Botanas"], 
+                                    labels=["Ganancia Neta Bolis","Ganancia Neta Botanas"], 
                                     autopct="%1.1f%%", shadow=True, startangle=90)
         plt.show()
-   
+     
         ######MUESTRA Y BÚSQUEDA EN EL HISTORIAL#######
     #Si click en botón bolis entonces:
     histbolis = pd.read_csv('lolo.csv')   
     #histbolis = pd.read_csv("registro_bolis.csv", index_col="Fecha")
     #Si botón en solo ventas entonces:
     soloventasbolis = histbolis[histbolis["Accion"]=="Venta"]
-
+    
     #Sinosi botón en solo carga entonces:
     solocargabolis = histbolis[histbolis["Accion"]=="Carga"]
                           
     #si click en botón botanas entonces:
-    histbotanas = pd.read_csv('lolo.csv')
+    histbotanas = pd.read_csv('registro botanas.csv')
     #histbotanas = pd.read_csv("registro_botanas.csv", index_col="Fecha")
-
+    
     #Si botón en solo venta entonces:
     soloventabotanas = histbotanas[histbotanas["Accion"]=="Venta"]
-
-
+    
+    
     #Sinosi botón en solo carga entonces:
     solocargabotanas = histbotanas[histbotanas["Accion"]=='Carga']   
-
-
+    
+    
+    
     ######GANANCIAS BRUTAS######
     gananciabrutabolis = sum(soloventasbolis["Ganancia"])
     totalbolisvendidos = sum(soloventasbolis["Cantidad"])
     gananciabrutabotanas = sum(soloventabotanas["Ganancia"])
     totalbotanasvendidas = sum(soloventabotanas["Cantidad"])
-
+    
     ######GANANCIAS NETAS#######
     ganancianetabolis = sum(histbolis["Ganancia"])
     ganancianetabotanas = sum(histbotanas["Ganancia"])
     gananciahistorica = ganancianetabolis + ganancianetabotanas 
     gananciahistorica = str(gananciahistorica)
+    
+    ultimos7registrosbolis = soloventasbolis.head(7)
+    gananciasemanalbolis = sum(ultimos7registrosbolis["Ganancia"])
+    ultimos7registrosbotanas = soloventabotanas.head(7)
+    gananciasemanalbotanas = sum(ultimos7registrosbotanas["Ganancia"])
+    gananciasemanal = gananciasemanalbolis + gananciasemanalbotanas
+    
+    ######Total cargas#####
+    cargasbolis = sum(solocargabolis["Ganancia"])
+    cargasbotanas = sum(solocargabotanas["Ganancia"])
+    cargastotales = cargasbolis + cargasbotanas
+        
     
     VentanaDeDatos = tkinter.Tk()
     VentanaDeDatos.title("Datos")
@@ -66,11 +78,11 @@ def Ventana_datos():
                           bg = Color_de_fondo,
                           font = (Fuente_titulos, Tamaño_titulos + 3)).grid(row = 1, column = 2, padx = 20, pady = 5)
     Ganancia_semanal = tkinter.Label(VentanaDeDatos, 
-                                     text = 'Ganancia de la semana',
+                                     text = 'Ganancia bruta de la semana',
                                      bg = Color_de_fondo,
                                      font = (Fuente_subtitulos, Tamaño_subtitulos )).grid(row = 2, column = 1, padx = 10, pady = 5)
     Ganancia_mensual = tkinter.Label(VentanaDeDatos, 
-                                     text = 'Ganancia del mes',
+                                     text = 'Total invertido en cargas',
                                      bg = Color_de_fondo,
                                      font = (Fuente_subtitulos, Tamaño_subtitulos)).grid(row = 3, column = 1, pady = 5)
     Ganancia_historica = tkinter.Label(VentanaDeDatos, 
@@ -78,11 +90,11 @@ def Ventana_datos():
                                        bg = Color_de_fondo,
                                        font = (Fuente_subtitulos, Tamaño_subtitulos )).grid(row = 4, column = 1, pady = 5)
     cantidad_de_ganancia_semana = tkinter.Label(VentanaDeDatos, 
-                                                text = gananciahistorica,
+                                                text = gananciasemanal,
                                                 bg = Color_de_fondo,
                                                 font = (Fuente_subtitulos, Tamaño_subtitulos + 1)).grid(row = 2,column = 3, padx = 10, pady = 5)
     cantidad_de_ganancia_mes = tkinter.Label(VentanaDeDatos, 
-                                             text = gananciahistorica,
+                                             text = cargastotales,
                                              bg = Color_de_fondo,
                                              font = (Fuente_subtitulos, Tamaño_subtitulos + 1)).grid(row = 3,column = 3, pady = 5)
     cantidad_de_ganancia_historica = tkinter.Label(VentanaDeDatos, 

@@ -1,4 +1,6 @@
 from datetime import datetime
+import tkinter
+import tkinter.font
 from Hoja_de_personalizacion import *
 import pandas as pd
 import numpy as np
@@ -137,5 +139,3 @@ def Ventana_datos():
     
     
     tkinter.mainloop()
-
-Ventana_datos()
